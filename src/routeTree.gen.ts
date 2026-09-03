@@ -10,33 +10,102 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as DashboardRouteImport } from './routes/dashboard'
+import { Route as HistoryRouteImport } from './routes/history'
+import { Route as ToolsEmailRouteImport } from './routes/tools.email'
+import { Route as ToolsMeetingsRouteImport } from './routes/tools.meetings'
+import { Route as ToolsPlannerRouteImport } from './routes/tools.planner'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const HistoryRoute = HistoryRouteImport.update({
+  id: '/history',
+  path: '/history',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsEmailRoute = ToolsEmailRouteImport.update({
+  id: '/tools/email',
+  path: '/tools/email',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsMeetingsRoute = ToolsMeetingsRouteImport.update({
+  id: '/tools/meetings',
+  path: '/tools/meetings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ToolsPlannerRoute = ToolsPlannerRouteImport.update({
+  id: '/tools/planner',
+  path: '/tools/planner',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/tools/email': typeof ToolsEmailRoute
+  '/tools/meetings': typeof ToolsMeetingsRoute
+  '/tools/planner': typeof ToolsPlannerRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/tools/email': typeof ToolsEmailRoute
+  '/tools/meetings': typeof ToolsMeetingsRoute
+  '/tools/planner': typeof ToolsPlannerRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/dashboard': typeof DashboardRoute
+  '/history': typeof HistoryRoute
+  '/tools/email': typeof ToolsEmailRoute
+  '/tools/meetings': typeof ToolsMeetingsRoute
+  '/tools/planner': typeof ToolsPlannerRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/tools/email'
+    | '/tools/meetings'
+    | '/tools/planner'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/tools/email'
+    | '/tools/meetings'
+    | '/tools/planner'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/history'
+    | '/tools/email'
+    | '/tools/meetings'
+    | '/tools/planner'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  DashboardRoute: typeof DashboardRoute
+  HistoryRoute: typeof HistoryRoute
+  ToolsEmailRoute: typeof ToolsEmailRoute
+  ToolsMeetingsRoute: typeof ToolsMeetingsRoute
+  ToolsPlannerRoute: typeof ToolsPlannerRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +117,51 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/history': {
+      id: '/history'
+      path: '/history'
+      fullPath: '/history'
+      preLoaderRoute: typeof HistoryRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/email': {
+      id: '/tools/email'
+      path: '/tools/email'
+      fullPath: '/tools/email'
+      preLoaderRoute: typeof ToolsEmailRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/meetings': {
+      id: '/tools/meetings'
+      path: '/tools/meetings'
+      fullPath: '/tools/meetings'
+      preLoaderRoute: typeof ToolsMeetingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/tools/planner': {
+      id: '/tools/planner'
+      path: '/tools/planner'
+      fullPath: '/tools/planner'
+      preLoaderRoute: typeof ToolsPlannerRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  DashboardRoute: DashboardRoute,
+  HistoryRoute: HistoryRoute,
+  ToolsEmailRoute: ToolsEmailRoute,
+  ToolsMeetingsRoute: ToolsMeetingsRoute,
+  ToolsPlannerRoute: ToolsPlannerRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
